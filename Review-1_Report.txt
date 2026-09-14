@@ -1,0 +1,288 @@
+PROJECT REVIEW – 1 REPORT
+
+Project Title:
+AI-Based Plastic Waste Detection and Hotspot Mapping
+
+Student Name:
+Gomathi C
+
+Department:
+Computer Science and Engineering (CSE)
+
+Institution:
+Rathinam Technical Campus
+
+
+1. PROJECT OVERVIEW
+
+Plastic waste is accumulating across different sections of the lake shoreline, but there is no systematic way to identify high-waste areas and prioritize cleaning.
+
+The proposed project uses Artificial Intelligence and Computer Vision to detect plastic waste from images, count detected plastic waste items, identify waste levels, and support cleaning prioritization.
+
+
+2. PROBLEM STATEMENT
+
+Plastic waste is accumulating across different sections of the lake shoreline, but there is no systematic way to identify high-waste areas and prioritize cleaning.
+
+
+3. OBJECTIVES
+
+• Detect plastic waste from shoreline images.
+• Identify different types of plastic waste.
+• Count detected plastic waste items.
+• Identify areas with comparatively higher waste levels.
+• Support cleaning teams in prioritizing areas.
+• Develop a software-based AI solution for monitoring plastic waste.
+
+
+4. FIELD OBSERVATION
+
+During field observation, plastic waste was observed along different sections of the lake shoreline.
+
+The observation showed that waste is not uniformly distributed and that systematic identification of high-waste areas can help in cleaning prioritization.
+
+Field photos and videos were collected during the observation.
+
+
+5. PROBLEM ANALYSIS
+
+Five Whys analysis was used to understand the problem.
+
+Observed issue:
+Plastic waste is present across different sections of the shoreline.
+
+Possible contributing factors include:
+• Improper disposal of plastic waste.
+• Waste carried through drains or runoff.
+• Insufficient availability or placement of waste bins.
+• Irregular waste collection.
+• Lack of systematic monitoring.
+
+These factors are considered possible causes and require further validation.
+
+
+6. STAKEHOLDERS
+
+The identified stakeholders are:
+
+• Residents
+• Visitors and tourists
+• Municipality / local authorities
+• Lake management authorities
+• Waste collection and cleaning workers
+• Nearby shops and vendors
+• Environmental groups and community volunteers
+• Students and educational institutions
+
+
+7. PROPOSED SOLUTION
+
+The proposed solution is an AI-based plastic waste detection and hotspot mapping system.
+
+Basic workflow:
+
+Image Capture
+       ↓
+Image Pre-processing
+       ↓
+YOLO11n AI Model
+       ↓
+Plastic Waste Detection
+       ↓
+Plastic Waste Counting
+       ↓
+Waste Level Identification
+       ↓
+Hotspot Identification
+       ↓
+Cleaning Prioritization
+
+The system is designed to support human decision-making rather than automatically making cleaning decisions.
+
+
+8. TECHNOLOGY USED
+
+• Python
+• Computer Vision
+• YOLO11n Object Detection
+• Ultralytics
+• AI / Machine Learning
+• GitHub
+• VS Code
+
+
+9. DATASET
+
+A Plastic Waste Management dataset was used for model development.
+
+The dataset contains three plastic waste classes:
+
+• Plastic Bag
+• Plastic Bottle
+• Plastic Glass
+
+The dataset was prepared in YOLO format with training, validation, and test images.
+
+Dataset source:
+Roboflow Universe
+
+License:
+CC BY 4.0
+
+
+10. COMPLETED WORK SO FAR
+
+The following work has been completed:
+
+• Problem identification and field observation.
+• Problem statement refinement.
+• Five Whys problem analysis.
+• Stakeholder identification.
+• AI solution ideation and selection.
+• Technical architecture preparation.
+• Dataset preparation.
+• YOLO11n model training.
+• Plastic waste detection implementation.
+• Basic plastic waste counting.
+• Basic waste-level classification.
+• Hotspot identification prototype.
+• GitHub public repository creation.
+• Project README documentation.
+• Requirements file creation.
+
+
+11. KEY FEATURES / MODULES COMPLETED
+
+Module 1 – Plastic Waste Detection
+
+The trained YOLO11n model detects plastic waste from input images.
+
+Detected classes:
+• Plastic Bag
+• Plastic Bottle
+• Plastic Glass
+
+
+Module 2 – Plastic Waste Counting
+
+The system counts the number of detected plastic waste objects in each image.
+
+
+Module 3 – Basic Waste-Level Identification
+
+A prototype rule-based classification is currently used:
+
+• 0 detections → Low
+• 1–2 detections → Medium
+• More than 2 detections → High
+
+This is an initial prototype rule and is not considered a validated environmental severity score.
+
+
+Module 4 – Hotspot Identification Prototype
+
+The system uses the detected waste count to identify comparatively higher-waste images/areas.
+
+Further development is planned to convert this into proper location-based hotspot mapping.
+
+
+12. CURRENTLY WORKING
+
+The current implementation successfully performs:
+
+Input Image
+→ YOLO11n Detection
+→ Plastic Waste Detection
+→ Detection Count
+→ Waste Level
+
+Testing with two field images produced:
+
+• Image 1: 0 plastic waste detections – Low
+• Image 2: 1 Plastic Bag detected – Medium
+
+The result demonstrates that the basic detection and counting pipeline is working.
+
+
+13. MODEL VALIDATION RESULT
+
+The trained YOLO11n model was evaluated on the validation dataset.
+
+Validation results:
+
+Precision: 0.881
+Recall: 0.764
+mAP@50: 0.836
+mAP@50-95: 0.701
+
+Validation set:
+238 images
+302 object instances
+
+These values represent model validation results on the dataset and should not be interpreted as real-world field accuracy.
+
+
+14. GITHUB REPOSITORY
+
+Public GitHub Repository:
+
+https://github.com/gomathic735-cpu/plastic-waste-detection
+
+The repository currently contains the project README, requirements file, Git configuration files, and the implemented detection and hotspot modules.
+
+Large datasets and trained model files are excluded from the public repository.
+
+
+15. PENDING WORK
+
+The following work is still pending:
+
+• Improve the plastic waste detection model.
+• Test the model on more field images.
+• Improve hotspot identification logic.
+• Develop location-based hotspot mapping.
+• Develop a monitoring dashboard.
+• Add real-time camera/image input support.
+• Perform detailed performance testing.
+• Improve visualization and reporting.
+• Complete final project documentation.
+
+
+16. NEXT STEPS
+
+The next development stages are:
+
+1. Test the trained model with more images.
+2. Improve hotspot detection logic.
+3. Implement hotspot mapping.
+4. Develop a simple dashboard.
+5. Integrate detection and hotspot modules.
+6. Evaluate the complete system.
+7. Prepare final documentation and demonstration.
+
+
+17. RESPONSIBLE AI
+
+The system is intended to support human decision-making.
+
+AI predictions may contain errors, especially when images have poor lighting, occlusion, unusual viewpoints, or objects that are difficult to identify.
+
+Cleaning decisions should therefore be verified by responsible human personnel.
+
+The project does not use personal identification as a project objective.
+
+
+18. AI USAGE DECLARATION
+
+AI tools were used during the project for ideation, problem analysis, technical guidance, documentation support, and presentation preparation.
+
+The field observations, photographs, project implementation, testing, and project decisions are based on the student's work and project development process.
+
+
+19. CONCLUSION
+
+The project has successfully completed the initial AI implementation stage.
+
+A YOLO11n-based computer vision model has been trained and used to detect plastic waste from images. Plastic waste counting and a basic hotspot/waste-level identification prototype have also been implemented.
+
+The next phase will focus on hotspot mapping, dashboard development, broader testing, and improving the overall system.
