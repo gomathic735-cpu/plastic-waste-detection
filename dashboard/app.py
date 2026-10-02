@@ -12,9 +12,12 @@ st.set_page_config(
 
 st.title("♻️ AI-Based Plastic Waste Detection and Hotspot Mapping")
 
-st.write("Upload a shoreline image to detect plastic waste and calculate hotspot score.")
+st.write(
+    "Upload a shoreline image to detect plastic waste "
+    "and calculate the prototype hotspot score."
+)
 
-# Load trained model
+# Load trained YOLO11n model
 model = YOLO("runs/detect/train/weights/best.pt")
 
 # Upload image
@@ -27,18 +30,15 @@ if uploaded_file is not None:
 
     image = Image.open(uploaded_file)
 
-    st.image(
-        image,
-        caption="Uploaded Image",
-        width="stretch"
-    )
-
     # Save uploaded image temporarily
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
+    with tempfile.NamedTemporaryFile(
+        delete=False,
+        suffix=".jpg"
+    ) as temp_file:
         image.save(temp_file.name)
         image_path = temp_file.name
 
-    # Detect plastic waste
+    # Run YOLO11n detection
     results = model.predict(
         source=image_path,
         conf=0.25
@@ -46,10 +46,21 @@ if uploaded_file is not None:
 
     result = results[0]
 
+    # Create image with AI bounding boxes
+    detected_image = result.plot()
+
+    st.subheader("🤖 AI Detection Result")
+
+    st.image(
+        detected_image,
+        caption="YOLO11n Plastic Waste Detection",
+        width="stretch"
+    )
+
     # Count detected objects
     count = len(result.boxes)
 
-    # Calculate detected plastic area
+    # Calculate total bounding-box area
     total_area = 0
 
     for box in result.boxes.xyxy:
@@ -78,7 +89,10 @@ if uploaded_file is not None:
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.metric("Plastic Objects", count)
+        st.metric(
+            "Plastic Objects",
+            count
+        )
 
     with col2:
         st.metric(
@@ -105,5 +119,5 @@ if uploaded_file is not None:
     else:
         st.error("High hotspot score detected.")
 
-    # Clean temporary file
+    # Remove temporary image
     os.remove(image_path)
