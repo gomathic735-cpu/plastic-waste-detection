@@ -25,10 +25,13 @@ for result in results:
         area = width * height
         total_area = total_area + area
 
-    # Determine waste level
-    if count == 0:
+    # Calculate prototype hotspot score
+    score = count * 10 + (float(total_area) / 10000)
+
+    # Determine hotspot level
+    if score == 0:
         level = "Low"
-    elif count <= 2:
+    elif score < 50:
         level = "Medium"
     else:
         level = "High"
@@ -36,5 +39,6 @@ for result in results:
     print("Image:", result.path)
     print("Plastic waste detected:", count)
     print("Detected plastic area:", round(float(total_area), 2), "pixels")
-    print("Waste level:", level)
+    print("Hotspot score:", round(score, 2))
+    print("Hotspot level:", level)
     print("----------------------")
