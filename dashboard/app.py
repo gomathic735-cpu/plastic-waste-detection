@@ -19,6 +19,7 @@ st.write(
 
 # Load trained YOLO11n model
 model = YOLO("runs/detect/train/weights/best.pt")
+
 # Select shoreline section
 section = st.selectbox(
     "📍 Select Lake Shoreline Section",
@@ -29,6 +30,7 @@ section = st.selectbox(
         "Section D"
     ]
 )
+
 # Upload image
 uploaded_file = st.file_uploader(
     "Upload a shoreline image",
@@ -114,19 +116,60 @@ if uploaded_file is not None:
             "Hotspot Score",
             f"{score:.2f}"
         )
-    st.write(f"📍 **Shoreline Section:** {section}")
+
+    # Display selected shoreline section
+    st.write(
+        f"📍 **Shoreline Section:** {section}"
+    )
+
+    # Store section scores
+    if "section_scores" not in st.session_state:
+        st.session_state.section_scores = {
+            "Section A": 0,
+            "Section B": 0,
+            "Section C": 0,
+            "Section D": 0
+        }
+
+    st.session_state.section_scores[section] = score
+
+    # Section-wise hotspot comparison
+    st.subheader("📊 Section-wise Hotspot Comparison")
+
+    for name in st.session_state.section_scores:
+        st.write(
+            f"📍 {name}: "
+            f"{st.session_state.section_scores[name]:.2f}"
+        )
+
+    # Visual comparison
+    st.subheader("📈 Hotspot Score Comparison")
+
+    st.bar_chart(
+        st.session_state.section_scores
+    )
+
+    # Hotspot level
     st.subheader("📍 Hotspot Level")
 
-    st.write(f"**{level}**")
+    st.write(
+        f"**{level}**"
+    )
 
     if level == "Low":
-        st.success("Low plastic waste detected.")
+        st.success(
+            "Low plastic waste detected."
+        )
 
     elif level == "Medium":
-        st.warning("Medium plastic waste detected.")
+        st.warning(
+            "Medium plastic waste detected."
+        )
 
     else:
-        st.error("High hotspot score detected.")
+        st.error(
+            "High hotspot score detected."
+        )
 
     # Remove temporary image
     os.remove(image_path)
