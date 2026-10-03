@@ -19,7 +19,16 @@ st.write(
 
 # Load trained YOLO11n model
 model = YOLO("runs/detect/train/weights/best.pt")
-
+# Select shoreline section
+section = st.selectbox(
+    "📍 Select Lake Shoreline Section",
+    [
+        "Section A",
+        "Section B",
+        "Section C",
+        "Section D"
+    ]
+)
 # Upload image
 uploaded_file = st.file_uploader(
     "Upload a shoreline image",
@@ -105,7 +114,7 @@ if uploaded_file is not None:
             "Hotspot Score",
             f"{score:.2f}"
         )
-
+    st.write(f"📍 **Shoreline Section:** {section}")
     st.subheader("📍 Hotspot Level")
 
     st.write(f"**{level}**")
